@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 add_definitions(-std=c++11)
-set(CXX_FLAGS "-Wall")
-set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
 
-project(raytrace)
-add_executable (raytrace main.cc)
+cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+SET(sampleName ray-tracer)
+
+add_executable (ray-tracer color.h main.cc vec3.h)

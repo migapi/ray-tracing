@@ -1,26 +1,21 @@
-#include <iostream>
+#include "rtweekend.h"
+
+#include "camera.h"
+#include "hittable.h"
+#include "hittable_list.h"
+#include "sphere.h"
 
 int main () {
-    // image
-    int image_width = 256;
-    int image_height = 256;
+    hittable_list world;
 
-    //render
-    std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
-    
-    for (int j = 0; j < image_height; j++) {
-        std::clog << "\rScanlines remaining: " << (image_height - j) << " " << std::flush;
-        for (int i = 0; i < image_width; i++) {
-            auto r = double(i) / (image_width-1);
-            auto g = double(j) / (image_height-1);
-            auto b = 0.0;
+    world.add(make_shared<sphere>(point3(0,0,-1), 0.5));
+    world.add(make_shared<sphere>(point3(0,-100.5,-1), 100));
 
-            int ir = int(255.999 * r);
-            int ig = int(255.999 * g);
-            int ib = int(255.999 * b);
+    camera cam;
 
-            std::cout << ir << ' ' << ig << ' ' << ib << '\n';
-        }
-    }
-    std::clog << "\rDone.";
+    cam.aspect_ratio = 16.0 / 9.0;
+    cam.image_width  = 400;
+    cam.samples_per_pixel = 100;
+
+    cam.render(world);
 }
