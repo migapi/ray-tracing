@@ -3,9 +3,12 @@
 
 #include "rtweekend.h"
 
+class material;
+
 class hit_record {
     public:
     point3 p;
+    shared_ptr<material> mat;
     vec3 normal;
     double t;
 
